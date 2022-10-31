@@ -1,0 +1,43 @@
+using System;
+using System.Globalization;
+
+namespace qwerty
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int firstDigit, secondDigit;
+            float mean = 0;
+            bool isInt = false;
+
+            Console.Write("Введите первое число: ");
+            isInt = int.TryParse(Console.ReadLine(), out firstDigit);
+
+            while (!isInt)
+            {
+                Console.Write("\nВведите корректное число: ");
+                isInt = int.TryParse(Console.ReadLine(), out firstDigit);
+            }
+
+            Console.Write("Введите второе число: ");
+            isInt = int.TryParse(Console.ReadLine(), out secondDigit);
+
+            while (!isInt)
+            {
+                Console.Write("\nВведите корректное число: ");
+                isInt = int.TryParse(Console.ReadLine(), out secondDigit);
+            }
+
+            findMean(ref firstDigit, ref secondDigit, ref mean);
+
+            Console.WriteLine($"\nИх среднее арифметическое: {mean}");
+            Console.ReadKey();
+        }
+
+        static void findMean(ref int firstDigit, ref int secondDigit, ref float mean)
+        {
+            mean = ((float) firstDigit + secondDigit) / 2;
+        }
+    }
+}
