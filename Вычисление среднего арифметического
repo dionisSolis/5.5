@@ -7,24 +7,22 @@ namespace qwerty
     {
         static void Main(string[] args)
         {
-            int firstDigit = 0, secondDigit = 0;
+            int firstDigit = 0, secondDigit = 0, count = 1;
             float mean = 0;
-            bool isInt = false;
 
-            Console.Write("Введите первое число: ");
-            CheckInt(ref firstDigit);
-            Console.Write("Введите второе число: ");
-            CheckInt(ref secondDigit);
-            mean = FindMean(ref firstDigit, ref secondDigit, ref mean);
-
+            firstDigit = EnterInt(ref count);
+            secondDigit = EnterInt(ref count);
+            mean = FindMean(firstDigit, secondDigit);
             Console.WriteLine($"\nИх среднее арифметическое: {mean}");
             Console.ReadKey();
         }
-        
-        static void CheckInt(ref int digit)
+
+        static int EnterInt(ref int count)
         {
             bool isDigit;
+            int digit;
 
+            Console.Write($"Введите {count}e число: ");
             isDigit = int.TryParse(Console.ReadLine(), out digit);
 
             while (!isDigit)
@@ -32,12 +30,14 @@ namespace qwerty
                 Console.Write("Введите корректное число: ");
                 isDigit = int.TryParse(Console.ReadLine(), out digit);
             }
+
+            count += 1;
+            return digit;
         }
-        
-        static float FindMean(ref int firstDigit, ref int secondDigit, ref float mean)
+
+        static float FindMean(int firstDigit, int secondDigit)
         {
-            mean = ((float)firstDigit + secondDigit) / 2;
-            return mean;
+            return ((float)firstDigit + secondDigit) / 2;
         }
     }
 }
